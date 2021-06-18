@@ -41,7 +41,7 @@ export default function App() {
       rows={rows}
       columns={columns}
       pagination={true}
-      rowsPerPageOptions={[4, 8, 12]}
+      rowsPerPageOptions={[2, 4, 6]}
     />
   );
 }
