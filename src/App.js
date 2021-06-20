@@ -41,6 +41,8 @@ export default function App() {
       rows={rows}
       columns={columns}
       pagination={true}
+      selection
+      visibleSelection
       rowsPerPageOptions={[2, 4, 6]}
     />
   );
