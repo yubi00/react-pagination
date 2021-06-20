@@ -48,7 +48,7 @@ export default function App() {
       selection
       setSelected={setSelected}
       pagination={true}
-      rowsPerPageOptions={[3, 6, 9]}
+      rowsPerPageOptions={[5, 10, 15]}
     />
   );
 }
