@@ -5,21 +5,14 @@ export default function Table({
   rows,
   columns,
   pagination,
-  rowsPerPageOptions = [5,10,15]
+  selected,
+  setSelected,
+  selection,
+  visibleSelection,
+  rowsPerPageOptions = [5, 10, 15]
 }) {
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(rowsPerPageOptions[0]);
-  const [selected, setSelected] = useState([]);
-
-  const handleSelectAll = (newSelection, page, pageSize) => {
-    if (JSON.stringify(selected) === JSON.stringify(newSelection)) {
-      setSelected(newSelection);
-      return;
-    }
-    setSelected(
-      newSelection.slice(page * pageSize, page * pageSize + pageSize)
-    );
-  };
 
   return (
     <div style={{ height: 400, width: "100%" }}>
@@ -29,7 +22,7 @@ export default function Table({
         selectionModel={selected}
         pageSize={pageSize}
         rowsPerPageOptions={rowsPerPageOptions}
-        checkboxSelection
+        checkboxSelection={selection}
         pagination={pagination}
         page={page}
         onPageSizeChange={({ pageSize }) => {
@@ -40,9 +33,18 @@ export default function Table({
           setPage(page);
           setSelected([]);
         }}
-        onSelectionModelChange={({ selectionModel }) =>
-          handleSelectAll(selectionModel, page, pageSize)
-        }
+        onSelectionModelChange={({ selectionModel }) => {
+          //if visibleSelection props is defined and select all checkbox is checked
+          if (visibleSelection && selectionModel.length === rows.length) {
+            setSelected(
+              selectionModel.slice(page * pageSize, page * pageSize + pageSize)
+            );
+            return;
+          }
+
+          //else, i.e if row is selected one by one
+          setSelected(selectionModel);
+        }}
       />
     </div>
   );
