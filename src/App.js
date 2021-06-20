@@ -44,7 +44,7 @@ export default function App() {
       rows={rows}
       columns={columns}
       selected={selected}
-      // visibleSelection
+      visibleSelection
       selection
       setSelected={setSelected}
       pagination={true}
