@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Table from "./Table";
 
 const columns = [
@@ -36,14 +37,18 @@ const rows = [
 ];
 
 export default function App() {
+  const [selected, setSelected] = useState([]);
+
   return (
     <Table
       rows={rows}
       columns={columns}
-      pagination={true}
-      selection
+      selected={selected}
       visibleSelection
-      rowsPerPageOptions={[2, 4, 6]}
+      selection
+      setSelected={setSelected}
+      pagination={true}
+      rowsPerPageOptions={[3, 6, 9]}
     />
   );
 }
